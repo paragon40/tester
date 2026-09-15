@@ -1,0 +1,36 @@
+name: Tester Workflows
+
+on:
+  push: {}
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_ROLE_ARN: arn:aws:iam::259183055744:role/tester-github-oidc
+  AWS_REGION: us-east-1
+
+jobs:
+  tester:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      #- name: Install Terraform
+      #  uses: hashicorp/setup-terraform@v3
+
+      - name: Authenticate AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Check AWS identity
+        run: |
+          aws sts get-caller-identity
+
+      - name: First test
+        run: echo "This is working"
