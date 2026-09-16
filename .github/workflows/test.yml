@@ -34,8 +34,8 @@ jobs:
 
       - name: Test Bucket Listing
         run: aws s3api list-objects-v2 \
-             -- bucket-name tester-bucket-tester \
-             -- max-items 5
+             --bucket tester-bucket-tester \
+             --max-items 5
 
       - name: Test Bucket Creation
         run: aws s3api create-bucket --bucket another-test-bucket --region ${{ env.AWS_REGION }}
