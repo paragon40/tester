@@ -8,8 +8,8 @@ resource "aws_iam_policy" "github_actions" {
     Statement = [
       {
         Effect   = "Allow"
-        Action   = "*"
-        Resource = "*"
+        Action   = "s3:ListBucket"
+        Resource = "arn:aws:s3:::tester-bucket-tester"
       }
     ]
   })

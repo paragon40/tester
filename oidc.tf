@@ -12,4 +12,8 @@ resource "aws_iam_openid_connect_provider" "github" {
   thumbprint_list = [
     data.tls_certificate.github.certificates[0].sha1_fingerprint
   ]
+
+  lifecycle {
+    ignore_changes = all
+  }
 }
