@@ -7,3 +7,4 @@ for i in {1..20}; do
        http://10.244.3.27:8080/ready
   sleep 1
 done
+
